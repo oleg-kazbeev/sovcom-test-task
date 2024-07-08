@@ -37,4 +37,4 @@
 Чтобы запустить программу, используйте следующую команду:
 
 ```bash
-python share_calculator.py <N> <share1> <share2> ... <shareN>
+python task_1.py <N> <share1> <share2> ... <shareN>
