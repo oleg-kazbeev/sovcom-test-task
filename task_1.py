@@ -1,4 +1,4 @@
-import argparse
+import sys
 
 
 class ShareCalculator:
@@ -8,21 +8,18 @@ class ShareCalculator:
         self.N = 0
 
     def read_input(self):
-        parser = argparse.ArgumentParser(description="Calculate percentage shares.")
-        parser.add_argument('N', type=int, help='Number of shares')
-        parser.add_argument('shares', type=float, nargs='+', help='List of share values')
+        input_data = sys.stdin.read
+        data = input_data().split()
 
-        args = parser.parse_args()
-
-        self.N = args.N
-        self.shares = args.shares
+        self.N = int(data[0])
+        self.shares = list(map(float, data[1:]))
 
         if self.N != len(self.shares):
             raise ValueError("Number of shares provided does not match the specified N.")
 
     def calculate_percentages(self):
         total_shares = sum(self.shares)
-        self.percentages = [(share / total_shares) * 100 for share in self.shares]
+        self.percentages = [share / total_shares for share in self.shares]
 
     def print_percentages(self):
         for percentage in self.percentages:
