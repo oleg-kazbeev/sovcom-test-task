@@ -43,7 +43,6 @@ class MegaTrader:
         return max_profit, selected_lots
 
 
-# Example usage
 def main():
     N, M, S = map(int, input().split())
     lots = defaultdict(list)
