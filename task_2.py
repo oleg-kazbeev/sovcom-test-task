@@ -45,18 +45,22 @@ class MegaTrader:
 
 def main():
     N, M, S = map(int, input().split())
-    lots = defaultdict(list)
+    day_lots = defaultdict(list)
 
     while True:
         line = input().strip()
         if not line:
             break
         day, name, price, quantity = line.split()
-        lots[day].append((int(day), name, float(price), int(quantity)))
+        day_lots[day].append((int(day), name, float(price), int(quantity)))
 
-    for day, lots in lots.items():
+    for day, lots in day_lots.items():
         if len(lots) > M:
             raise Exception(f"Incorrect number of lots for day {day}: It should be less than M")
+
+    lots = []
+    for l in day_lots.values():
+        lots.extend(l)
 
     trader = MegaTrader(N, M, S, lots)
     profit, selected_lots = trader.calculate_max_profit()
